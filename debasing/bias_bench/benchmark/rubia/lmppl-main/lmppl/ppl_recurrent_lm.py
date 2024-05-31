@@ -124,18 +124,25 @@ class LM:
                     model_inputs.pop('token_type_ids')
 
                 output = self.model(**{k: v.to(self.device) for k, v in model_inputs.items()})
-                print(output)
+                logit = output['logits']
+                #if self.pad_token_initialized:
+                #    logit = logit[:, :, :-1]
 
                 # shift the label sequence for causal inference
                 label = model_inputs['input_ids']
                 label[label == self.tokenizer.pad_token_id] = PAD_TOKEN_LABEL_ID
-                label = torch.concat([label[:, 1:], torch.tensor([[PAD_TOKEN_LABEL_ID] * label.shape[0]]).T], dim=1).to(self.device)
+                # Shift so that tokens < n predict n
+                shift_logits = logit[..., :-1, :].contiguous()
+                shift_label = label[:, 1:].contiguous()
+                #label = torch.concat([label[:, 1:], torch.tensor([[PAD_TOKEN_LABEL_ID] * label.shape[0]]).T], dim=1).to(self.device)
 
                 # compute loss
-                valid_length = (label != PAD_TOKEN_LABEL_ID).sum(dim=-1)
-                print(output['logits'].size())
-               # loss = self.loss_fct(output['logits'].view(-1, self.config.vocab_size), label.view(-1))
-                loss = self.loss_fct(output['logits'].view(output['logits'].size(0), self.config.vocab_size), label.view(-1))
+                #valid_length = (label != PAD_TOKEN_LABEL_ID).sum(dim=-1)
+                valid_length = (shift_label != PAD_TOKEN_LABEL_ID).sum(dim=-1)
+                #print(output['logits'].size())
+                loss = self.loss_fct(shift_logits.view(-1, shift_logits.size(-1)), shift_label.view(-1))
+                #loss = self.loss_fct(output['logits'].view(-1, self.config.vocab_size), model_inputs["labels"].view(-1)) #как для других моделей
+                #loss = self.loss_fct(output['logits'].view(output['logits'].size(0), self.config.vocab_size), label.view(-1)) пробовала не сработало
                 loss = loss.view(len(output['logits']), -1)
                 loss = torch.sum(loss, -1) / valid_length
                 loss_list += loss.cpu().tolist()
@@ -146,7 +153,6 @@ class LM:
                     del output
                     gc.collect()
                     torch.cuda.empty_cache()
-
 
         # conversion to perplexity
         ppl = [exp(i) for i in loss_list]
