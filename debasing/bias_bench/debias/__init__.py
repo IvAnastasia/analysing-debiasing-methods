@@ -1,0 +1,3 @@
+from .sentence_debias import compute_gender_subspace
+from .sentence_debias import compute_nationality_subspace
+from .sentence_debias import compute_religion_subspace
