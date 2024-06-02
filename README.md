@@ -8,7 +8,7 @@ In this study, we evaluate popular debiasing methods, including parameter-effici
 The contributions of this study are as follows: (i) a comprehensive evaluation of various debiasing techniques on Russian LLMs, (ii) analysis of the results, highlighting the most effective debiasing methods and providing explanations for observations; (iii) examination of the alignment of our findings with those for English LLMs; (iv) publication of code and experimental results on Github.
 
 ## Results
-### Results of debiasing experiments conducted in gender/nationality/religion domain, model: BERT.
+**Results of debiasing experiments conducted in gender/nationality/religion domain, model: BERT.**
 
 | Domain      | SubDomain                  | BERT | BERT + Prefix Tune | BERT + Prompt Tune | BERT + Adapter Tune |
 |-------------|----------------------------|:----:|:------------------:|:------------------:|:-------------------:|
@@ -33,7 +33,7 @@ The contributions of this study are as follows: (i) a comprehensive evaluation o
 | religion    | all                        | 0.77 |        0.77        |        0.77        |         0.77        |
 | religion    | freeform_antisem           | 0.77 |        0.77        |        0.77        |         0.77        |
 
-### Results of debiasing experiments conducted in gender/nationality/religion domain, model: GPT-2.
+**Results of debiasing experiments conducted in gender/nationality/religion domain, model: GPT-2.**
 
 | Domain      | SubDomain                  | GPT-2 | GPT-2 + Prefix Tune | GPT-2+ Prompt Tune | GPT-2+ Adapter Tune |
 |-------------|----------------------------|:-----:|:-------------------:|:------------------:|:-------------------:|
@@ -58,7 +58,7 @@ The contributions of this study are as follows: (i) a comprehensive evaluation o
 | religion    | all                        | 0.41  | 0.41                | 0.41               | 0.41                |
 | religion    | freeform_antisem           | 0.41  | 0.41                | 0.41               | 0.41                |
 
-### Results of debiasing experiments conducted in gender, nationality and religion domain using SelfDebias (Schick et al., 2021) in comparison with parameter-efficient methods, model: BERT. Underlined scores are scores of domains which were the target of debiasing. Bold scores indicate the best result for every subdomain (in case there is a result between 0.35 and 0.65.
+**Results of debiasing experiments conducted in gender, nationality and religion domain using SelfDebias (Schick et al., 2021) in comparison with parameter-efficient methods, model: BERT. Underlined scores are scores of domains which were the target of debiasing. Bold scores indicate the best result for every subdomain (in case there is a result between 0.35 and 0.65.**
 
 | Domain      | SubDomain                  | BERT + parameter-efficient methods, all domains | BERT + SelfDebias, gender | BERT + SelfDebias, nationality | BERT + SelfDebias, religion |
 |-------------|----------------------------|-------------------------------------------------|---------------------------|--------------------------------|-----------------------------|
@@ -83,7 +83,7 @@ The contributions of this study are as follows: (i) a comprehensive evaluation o
 | religion    | all                        |                       0.77                      |            0.16           |              0.19              |             0.07            |
 | religion    | freeform_antisem           |                       0.77                      |            0.16           |              0.19              |             0.07            |
 
-### Results of debiasing experiments conducted in gender, nationality and religion domain using SelfDebias (Schick et al., 2021) in comparison with parameter-efficient methods, model: GPT-2. Underlined scores are scores of domains which were the target of debiasing. Bold scores indicate the best result for every subdomain (in case there is a result between 0.35 and 0.65.
+**Results of debiasing experiments conducted in gender, nationality and religion domain using SelfDebias (Schick et al., 2021) in comparison with parameter-efficient methods, model: GPT-2. Underlined scores are scores of domains which were the target of debiasing. Bold scores indicate the best result for every subdomain (in case there is a result between 0.35 and 0.65.**
 | Domain      | SubDomain                  | GPT + parameter-efficient methods, all domains | GPT + SelfDebias, gender | GPT + SelfDebias, nationality | GPT + SelfDebias, religion |
 |-------------|----------------------------|------------------------------------------------|--------------------------|-------------------------------|----------------------------|
 | class       | all                        |                      0.51                      |           0.56           |              0.55             |            0.58            |
@@ -107,7 +107,7 @@ The contributions of this study are as follows: (i) a comprehensive evaluation o
 | religion    | all                        |                      0.41                      |           0.78           |              0.80             |            0.09            |
 | religion    | freeform_antisem           |                      0.41                      |           0.78           |              0.80             |            0.09            |
 
-### Results of debiasing experiments conducted in gender, nationality and religion domain using SentDebias (Liang et al., 2020) in comparison with parameter-efficient methods, models: BERT and GPT-2. Underlined scores are scores of domains which were the target of debiasing. Bold scores indicate the best result for every subdomain (in case there is a result between 0.35 and 0.65.
+**Results of debiasing experiments conducted in gender, nationality and religion domain using SentDebias (Liang et al., 2020) in comparison with parameter-efficient methods, models: BERT and GPT-2. Underlined scores are scores of domains which were the target of debiasing. Bold scores indicate the best result for every subdomain (in case there is a result between 0.35 and 0.65.**
 
 | Domain      | SubDomain                  | BERT + parameter-efficient methods, all domains | BERT + SentDeb, all domains | GPT-2 + parameter-efficient methods, all domains | GPT-2 + SentDeb, all domains |
 |-------------|----------------------------|-------------------------------------------------|:---------------------------:|:------------------------------------------------:|:----------------------------:|
