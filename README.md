@@ -24,7 +24,7 @@ RuBia contains 957, 278 and 332 examples of biased and less biased sentences in 
 The procedure of evaluating LLMs on RuBia consists from two stages:
 - For every RuBia pair, pseudo-log-likelihood metric (MPLL) (Salazar et al., 2020) or perplexity (PPL) is calculated, depending on type of LLM (MPLL for masked LLM, PPL for decoder-based LLMs). The higher score indicates that the model is less ‘surprised’ with the sentence.
 - For every subdomain and for every domain, the ratio of RuBia pairs with higher score prescribed to the biased sentence is calculated. The unbiased model has 0.5 bias score in the subdomain, which means that it does not prefer eigher stereotype or anti-sterotype.
-- 
+
 ## Results
 **Results of debiasing experiments conducted in gender/nationality/religion domain, model: BERT.**
 
