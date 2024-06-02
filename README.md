@@ -7,6 +7,24 @@ In this study, we evaluate popular debiasing methods, including parameter-effici
 
 The contributions of this study are as follows: (i) a comprehensive evaluation of various debiasing techniques on Russian LLMs, (ii) analysis of the results, highlighting the most effective debiasing methods and providing explanations for observations; (iii) examination of the alignment of our findings with those for English LLMs; (iv) publication of code and experimental results on Github.
 
+## Introduction
+Nowadays large language models (LLMs) are widely applied on downstream tasks (translation, chatbots etc.), including real-life tasks as resume scoring. However, LLMs have been show shown to exhibit social biases and reproduce common stereotypes about gender, nationality etc., as they are trained on data from the internet (Blodgett et al., 2020).
+One approach to detect bias is by using specialized crowd-sourced dataset that contain both more and less biased sentences. Well-known English dataset like StereoSet (Nadeem et al., 2021) and CrowS-pairs (Nangia et al., 2020), but also datasets in German (Bartl et al., 2020), French (N ́ev ́eol et al., 2022), and more recently, Russian (Grigoreva
+et al., 2024), have revealed that LLMs prefer a more biased sentence to a less biased one ones average.
+
+To ensure the safe usage of LLMs, various debiasing techniques have been proposed. These methods often involve fine-tuning a pre-trained model on balanced corpora (Garimella et al., 2021; Kaneko & Bollegala, 2021) or training additional models or adapters which do not contain bias. However, as highlighted by (Y. Li & Zhang, 2023) stated, train-based methods are applied to medium-scale LLMs, because large-scale models with billions of parameters usually have no access to logits, so they are debiased under prompt training paradigm (Bauer et al., 2022; Schick et al., 2021).
+
+Recent studies have focused on evaluating different debiasing techniques in English (Meade et al., 2022; Xie & Lukasiewicz, 2023). Building upon this research, we compare popular debiasing methods, including parameter-efficient techniques (adapter tuning, prefix-tuning, prompt tuning, implemented as in (Xie & Lukasiewicz, 2023)) and post-hoc methods like SelfDebias (Schick et al., 2021) and SentenceDebias (Liang et al., 2020), on 2 Russian language models. We use Russian Bias Detection Dataset RuBia (Grigoreva et al., 2024) to evaluate their performance after debiasing. To our knowledge, this is the first study evaluating debiasing techniques specifically on Russian language models.
+
+
+## Evaluation
+Evaluation is conducted on Russian Bias Detection Dataset {RuBia}[https://github.com/vergrig/RuBia-Dataset] (Grigoreva et al., 2024)
+RuBia contains 957, 278 and 332 examples of biased and less biased sentences in the domains of gender, nationality and socio-economic class, respectively. In RuBia, each bias domain is subdivided into subdomains, depending on task types and collecting procedure. For full description of subdomains, see (Grigoreva et al., 2024).
+
+The procedure of evaluating LLMs on RuBia consists from two stages:
+- For every RuBia pair, pseudo-log-likelihood metric (MPLL) (Salazar et al., 2020) or perplexity (PPL) is calculated, depending on type of LLM (MPLL for masked LLM, PPL for decoder-based LLMs). The higher score indicates that the model is less ‘surprised’ with the sentence.
+- For every subdomain and for every domain, the ratio of RuBia pairs with higher score prescribed to the biased sentence is calculated. The unbiased model has 0.5 bias score in the subdomain, which means that it does not prefer eigher stereotype or anti-sterotype.
+- 
 ## Results
 **Results of debiasing experiments conducted in gender/nationality/religion domain, model: BERT.**
 
