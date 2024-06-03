@@ -186,7 +186,7 @@ def compute_religion_subspace(data, model, tokenizer, batch_size=32):
         offset = batch_size * i
 
         inputs_r1 = tokenizer(
-            [example["relogion_example_bias"] for example in data[offset : offset + batch_size]],
+            [example["religion_example_bias"] for example in data[offset : offset + batch_size]],
             return_tensors="pt",
             truncation=True,
             padding="max_length",
@@ -194,7 +194,7 @@ def compute_religion_subspace(data, model, tokenizer, batch_size=32):
         ).to(device)
 
         inputs_r2 = tokenizer(
-            [example["relogion_example"] for example in data[offset : offset + batch_size]],
+            [example["religion_example"] for example in data[offset : offset + batch_size]],
             return_tensors="pt",
             truncation=True,
             padding="max_length",
